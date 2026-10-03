@@ -5,52 +5,99 @@
 
     <style>
         body {
-            background:fixed#ffe6f0;
+            background: #ffe6f0;
             font-family: Arial, sans-serif;
             text-align: center;
             padding-top: 100px;
+            overflow: hidden;
         }
-
         h1 {
-            color:#ff4d88;
+            color: #ff4d88;
         }
         
         button {
-            background: #ff4d88;
+            background:#ff4d88;
             color: white;
             border: none;
             padding: 15px 30px;
             font-size: 18px;
             border-radius: 25px;
             cursor: pointer;
+            margin: 10px;
+        }
+
+        #message {
+            display: none;
+            font-size: 20px;
+            color: #555;
+            margin-top: 30px;
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 30px;
+            animation: fall 3s linear forwards;
         }
         
-        button:hover {
-            background: #ff1f6d;
+        @keyframes fall {
+            from {
+                top: -50px;
+                opacity: 1;
+            }
+            to {
+                top: 100vh;
+                opacity: 0;
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1>I made something for you</h1>
 
-    <button onclick="openMessage()">Open Message</button>
+    <h1>I made something for you </h1>
+
+    <button onclick="openMessage()">Open Message </button>
+
+    <button onclick="surprise()">Surprise</button>
+
+    <div id="message">
+        You are someone very special to me.
+        <br><br>
+        I hope this little surprise makes you smile.
+    </div>
 
     <script>
         function openMessage() {
-            alert(
-                "I just wanted to remind you that you mean a lot to me. \n\n" +
-                "Thank you for being part of my life."
-            );
+            document.getElementById("message").style.display = "block";
+        }
+
+        function surprise() {
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement("div");
+
+                heart.className = "heart";
+                heart.innerHTML = "❤️";
+
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = 
+                    (2 + Math.random() * 3) + "s";
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
         }
     </script>
+
 </body>
 </html>
-
+   
     
-    
-
   
 
+            
+        
 
-   
+            
